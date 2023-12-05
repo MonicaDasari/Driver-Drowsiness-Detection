@@ -18,13 +18,13 @@ from email import encoders
 from email.mime.text import MIMEText
 
 pygame.mixer.init()
-pygame.mixer.music.load('C:\\Users\\sweth\\Downloads\\alarm.mp3')
+pygame.mixer.music.load('audio/alarm.mp3')
 
 EYE_ASPECT_RATIO_THRESHOLD = 0.25
 EYE_ASPECT_RATIO_CONSEC_FRAMES = 50
 COUNTER = 0
 
-face_cascade = cv2.CascadeClassifier("C:\\Users\\sweth\\Downloads\\haarcascade_frontalface_default.xml")
+face_cascade = cv2.CascadeClassifier("sources/haarcascade_frontalface_default.xml")
 
 def eye_aspect_ratio(eye):
     A = distance.euclidean(eye[1], eye[5])
@@ -64,7 +64,7 @@ def send_email_alert(sender_email,receiver_email,password,snapshot_filename):
 
             
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor('C:\\Users\\sweth\\Downloads\\shape_predictor_68_face_landmarks.dat')
+predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
 (lStart, lEnd) = face_utils.FACIAL_LANDMARKS_IDXS['left_eye']
 (rStart, rEnd) = face_utils.FACIAL_LANDMARKS_IDXS['right_eye']
@@ -73,9 +73,9 @@ video_capture = cv2.VideoCapture(0)
 time.sleep(2)
 
 # Email configurations
-sender_email = 'namanaswetha@gmail.com'  
-receiver_email = 'monicadasari9@gmail.com'  
-password = 'wpsw zmdl skya bpje'  
+sender_email = 'from_mail@yourexample.com'  
+receiver_email = 'receiver_mail@yourexample.com'  
+password = 'your password'  
 
 # Initialize variables for dynamic threshold 
 dynamic_threshold = EYE_ASPECT_RATIO_THRESHOLD  # Initialize with default threshold
@@ -116,7 +116,7 @@ while True:
                 
                 # Save a snapshot
                 # Folder path to save the snapshots
-                snapshot_folder = 'C:\\Users\\sweth\\Drowsiness Snapshots\\'
+                snapshot_folder = 'Drowsiness Snapshots/'
                 snapshot_filename = f'{snapshot_folder}drowsy_snapshot_{time.strftime("%Y%m%d%H%M%S")}.png'
                 cv2.imwrite(snapshot_filename, frame)
                 print(f"Snapshot saved: {snapshot_filename}")
